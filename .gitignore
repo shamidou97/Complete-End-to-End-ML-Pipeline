@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+
+# Docker
+.dockerignore
+
+# Data (Don't commit heavy datasets or large models)
+data/cifar-10-batches-py/
+data/cifar-10-python.tar.gz
+data/*.pth
+
+# Keep the result images for the README!
+!data/*.png
+
+# System
+.DS_Store

@@ -1,0 +1,24 @@
+services:
+  trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile.train
+    container_name: capstone2_trainer
+    volumes:
+      - ./src:/app/src
+      - ./data:/app/data
+      - ./tests:/app/tests  # <--- ADDED THIS
+    command: python src/main.py
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.serve
+    container_name: capstone2_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+      - ./data:/app/data
+      - ./tests:/app/tests  # <--- ADDED THIS
+    command: uvicorn src.api:app --host 0.0.0.0 --port 8000 --reload
